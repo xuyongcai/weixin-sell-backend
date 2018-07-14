@@ -1,0 +1,46 @@
+spring:
+  port: 8080
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 17307867
+    url: jdbc:mysql://localhost/sell?characterEncoding=utf-8&useSSL=false
+  jpa:
+    show-sql: true
+  jackson:
+    default-property-inclusion: non_null
+  redis:
+    host: localhost
+    port: 6379
+  server:
+    context-path: /sell
+
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+##  path: /var/log/tomcat/
+#  file: /var/log/tomcat/sell.log
+#  level:
+#    com.imooc.LoggerTest: debug
+
+
+wechat:
+  mpAppId: wx80c10032e92e7d1c
+  mpAppSecret: 1e890d010eead75fb0cce4e64a442d34
+  openAppId: wx6ad144e54af67d87
+  openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
+  mchId: 1483469312
+  mchKey: 06C56A89949D617xxxxxxxxxxx
+  keyPath: /var/weixin_cert/h5.p12
+  notifyUrl: http://sell.natapp4.cc/pay/notify
+  templateId:
+    orderStatus: e-Cqq67QxD6YNI41iRiqawEYdFavW_7pc7LyEMb-yeQ
+
+projectUrl:
+  wechatMpAuthorize: http://xc.xiaochaimusic.com
+  wechatOpenAuthorize: http://xc.xiaochaimusic.com
+  sell: http://xc.xiaochaimusic.com
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
