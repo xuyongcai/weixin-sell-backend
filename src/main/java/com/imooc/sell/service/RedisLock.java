@@ -23,11 +23,17 @@ public class RedisLock {
         if (stringRedisTemplate.opsForValue().setIfAbsent(key, value)) {
             return true;
         }
+        /**
+         * 下面那些代码很重要，必须加下，可以防止出现死锁情况。
+         * 假如lock（）和unlock（）之间的数据库操作出现了偶然间异常，抛出异常，
+         * unlock（）就会不会执行，
+         * 而又没有下面代码，就会出现死锁。
+         */
         String currentValue = stringRedisTemplate.opsForValue().get(key);
         //如果锁过期
         if (!StringUtils.isEmpty(currentValue) &&
                 Long.parseLong(currentValue) < System.currentTimeMillis()) {
-            //获取上一个锁的时间
+            //获取上一个锁的时间,并重新设value
             String oldValue = stringRedisTemplate.opsForValue().getAndSet(key, value);
             if (!StringUtils.isEmpty(oldValue) && oldValue.equals(currentValue)) {
                 return true;
@@ -35,7 +41,6 @@ public class RedisLock {
         }
         return false;
     }
-
 
     /**
      * 解锁
