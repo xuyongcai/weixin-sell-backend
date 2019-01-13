@@ -7,7 +7,7 @@ windows + jdk1.8 + tomcat8.0 + mysql + redis + nginx + idea
 
 ###登陆接口
 
-GET http://localhot:8080/seller/login?openid=10010
+GET http://localhost:8080/seller/login?openid=10010
 
 ###配置
 
